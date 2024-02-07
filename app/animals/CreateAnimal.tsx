@@ -8,7 +8,7 @@ export default function CreateAnimal() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [personality, setPersonality] = useState("");
-  const [type, setType] = useState("gos");
+  const [type, setType] = useState("dog");
 
   const router = useRouter();
 
@@ -17,6 +17,7 @@ export default function CreateAnimal() {
 
     const url = "https://animalets.pockethost.io/";
     const client = new PocketBase(url);
+    console.log({ name, age, personality, type });
     const record = await client
       .collection("animals")
       .create({ name, age, personality, type });
