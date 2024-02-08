@@ -1,5 +1,8 @@
-import CreateAnimal from "./CreateAnimal";
 import PocketBase from "pocketbase";
+import Link from "next/link";
+
+import CreateAnimal from "./CreateAnimal";
+import AnimalCard from "./AnimalCard";
 
 import styles from "./Animals.module.css";
 
@@ -9,12 +12,6 @@ export const dynamic = "auto",
   fetchCache = "auto",
   runtime = "nodejs",
   preferredRegion = "auto";
-
-const animalEmojis: { [index: string]: any } = {
-  dog: "🐶",
-  cat: "🐱",
-  rabbit: "🐰",
-};
 
 async function getAnimals() {
   // const res = await fetch(
@@ -26,12 +23,11 @@ async function getAnimals() {
   // const data = await res.json();
   // return data?.items as any[];
 
-  const url = "https://animalets.pockethost.io/";
-  const client = new PocketBase(url);
-  const records = await client.collection("animals").getFullList({
+  const pb = new PocketBase("https://animalets.pockethost.io/");
+  const data = await pb.collection("animals").getFullList({
     sort: "-created",
   });
-  return records;
+  return data;
 }
 
 export default async function AnimalsPage() {
@@ -45,24 +41,12 @@ export default async function AnimalsPage() {
       <CreateAnimal />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {animalsByDateDesc?.map((animal) => {
-          return <Animal key={animal.id} animal={animal} />;
+          return (
+            <Link key={animal.id} href={`/animals/${animal.id}`}>
+              <AnimalCard animal={animal} />
+            </Link>
+          );
         })}
-      </div>
-    </div>
-  );
-}
-
-function Animal({ animal }: any) {
-  const { type, name, age, personality } = animal || {};
-  return (
-    <div className="mx-4 flex justify-center items-center w-96 bg-base-100 shadow-xl mb-4">
-      <div className="p-5 items-center text-center">
-        <div className="text-6xl">{animalEmojis[animal.type]}</div>
-      </div>
-      <div className="card-body">
-        <h2 className="card-title">{name}</h2>
-        <p>Edat: {age}</p>
-        <p>Personalitat: {personality}</p>
       </div>
     </div>
   );

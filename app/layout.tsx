@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import Link from "next/link";
+import { MdHomeFilled, MdSettings, MdList } from "react-icons/md";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,8 +24,8 @@ export const metadata: Metadata = {
     },
   ],
   icons: [
-    { rel: "apple-touch-icon", url: "icons/icon-128x128.png" },
-    { rel: "icon", url: "icons/icon-128x128.png" },
+    { rel: "apple-touch-icon", url: "icon-192x192.png" },
+    { rel: "icon", url: "icon-192x192.png" },
   ],
 };
 
@@ -36,13 +37,27 @@ export default function RootLayout({
   return (
     <html lang="ca" data-theme="retro">
       <body className={`${inter.className} max-w-4xl mx-auto`}>
-        <div className="navbar bg-base-100">
+        <div className="hidden md:flex navbar bg-base-100">
           <Link className="btn btn-ghost text-xl" href="/">
             Inici
           </Link>
-          {/* <a className="btn btn-ghost text-xl" href="/animals">
-            La teva llista de mascotes
-          </a> */}
+          <Link className="btn btn-ghost text-xl" href="/animals">
+            Mascotes
+          </Link>
+          <Link className="btn btn-ghost text-xl ml-auto" href="/settings">
+            Configuració
+          </Link>
+        </div>
+        <div className="navbar fixed md:hidden bg-base-200 md:bg-base-100 bottom-0 left-0 flex justify-around">
+          <Link className="btn btn-ghost text-xl bg-base-300" href="/">
+            <MdHomeFilled />
+          </Link>
+          <Link className="btn btn-ghost text-xl bg-base-300" href="/animals">
+            <MdList />
+          </Link>
+          <Link className="btn btn-ghost text-xl bg-base-300" href="/settings">
+            <MdSettings />
+          </Link>
         </div>
         {children}
       </body>

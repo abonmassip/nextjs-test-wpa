@@ -15,9 +15,7 @@ export default function CreateAnimal() {
   const addAnimal = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const url = "https://animalets.pockethost.io/";
-    const client = new PocketBase(url);
-    console.log({ name, age, personality, type });
+    const client = new PocketBase("https://animalets.pockethost.io/");
     const record = await client
       .collection("animals")
       .create({ name, age, personality, type });
