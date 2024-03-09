@@ -1,5 +1,4 @@
 import PocketBase from "pocketbase";
-import Link from "next/link";
 
 import CreateAnimal from "./CreateAnimal";
 import AnimalCard from "./AnimalCard";
@@ -42,9 +41,11 @@ export default async function AnimalsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {animalsByDateDesc?.map((animal) => {
           return (
-            <Link key={animal.id} href={`/animals/${animal.id}`}>
-              <AnimalCard animal={animal} />
-            </Link>
+            <AnimalCard
+              key={animal.id}
+              animal={animal}
+              href={`/animals/${animal.id}`}
+            />
           );
         })}
       </div>

@@ -44,7 +44,7 @@ export default function Settings() {
         </div>
       </div>
       <div role="alert" className="alert w-4/5 flex mt-10 m-auto">
-        <span>Dones permis per rebre anuncis personalitzats?</span>
+        <span>Dones permís per rebre anuncis personalitzats?</span>
         <div className="ml-auto  flex gap-4">
           <button
             className={`btn btn-sm ${!customAds && "btn-primary"}`}

@@ -48,7 +48,15 @@ export default function RootLayout({
             Configuració
           </Link>
         </div>
-        <div className="navbar fixed md:hidden bg-base-200 md:bg-base-100 bottom-0 left-0 flex justify-around">
+        {/* <div className="navbar fixed md:hidden bg-base-200 md:bg-base-100 bottom-0 left-0 flex justify-around"> */}
+        <div
+          className="navbar md:hidden bg-base-200 flex justify-around"
+          style={{
+            height: "70px",
+            position: "fixed",
+            top: "calc(100dvh - 70px)",
+          }}
+        >
           <Link className="btn btn-ghost text-xl bg-base-300" href="/">
             <MdHomeFilled />
           </Link>
